@@ -6,6 +6,7 @@
 #include <map>
 #include <memory>
 #include "Loader.h"
+#include "IInstruction.h"
 
 class Interpreter {
 private:
@@ -26,4 +27,5 @@ public:
 	std::string startInterpreting();
 	void setupPrequirements();
 	std::string interpret(int position);
+	std::unique_ptr<IInstruction> getOperation(std::string op);
 };

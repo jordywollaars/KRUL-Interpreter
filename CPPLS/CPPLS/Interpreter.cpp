@@ -35,7 +35,8 @@ Interpreter::Interpreter(std::string baseURL, std::string startFile) : baseURL{ 
 
 std::string Interpreter::startInterpreting()
 {
-
+	std::cout << "--------------------------------------------------------------------------------" << std::endl;
+	std::cout << "Current address: " << std::endl << this->baseURL << this->currentFile << std::endl;
 	this->instructions = loader.get()->LoadInstructionsFromURL(this->baseURL + this->currentFile);
 
 	setupPrequirements();
@@ -44,7 +45,11 @@ std::string Interpreter::startInterpreting()
 	for (this->currentPosition; this->currentPosition < this->instructions.size(); this->currentPosition++)
 	{
 		output = this->interpret(this->currentPosition);
-		//std::cout << output << std::endl;
+		
+		if (output == "error")
+		{
+			return "The program has crashed due to an error!";
+		}
 	}
 
 	std::string result;
@@ -84,153 +89,182 @@ void Interpreter::setupPrequirements()
 	this->currentPosition = 0;
 }
 
+bool isDigit(std::string str)
+{
+	for (int i = 0; i < str.size(); i++)
+	{
+		if (!std::isdigit(str.at(i)))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 std::string Interpreter::interpret(int position)
 {
 	const std::string instruction = this->instructions[position];
-	std::unique_ptr<IInstruction> instructionOperator;
+	const char type = instruction.at(0);
 
 	if (instruction.substr(0, 1) == ":" || instruction == "end")
 	{
 		return instruction;
 	}
 
-	if (instruction.substr(0, 1) == "\\")
+	switch (type)
 	{
+	case '\\':
 		this->stack.push_back(instruction.substr(instruction.find("\\") + 1));
-	}
-	else if (instruction.substr(0, 1) == ">")
-	{
+		return instruction;
+	case '>':
 		this->stack.push_back(std::to_string(this->labelReferences[instruction.substr(instruction.find(">") + 1)]));
-	}
-	else if (instruction.substr(0, 1) == "=")
-	{
+		return instruction;
+	case '=':
 		this->variables[instruction.substr(instruction.find("=") + 1)] = this->stack.back();
 		this->stack.pop_back();
-	}
-	else if (instruction.substr(0, 1) == "$")
-	{
+		return instruction;
+	case '$':
 		this->stack.push_back(this->variables[instruction.substr(instruction.find("$") + 1)]);
+		return instruction;
+	default:
+		break;
 	}
-	else
+
+	if (isDigit(instruction))
 	{
-		//String operations
-		if (instruction == "dup")
-		{
-			instructionOperator = std::make_unique<StringDupOperation>();
-		}
-		else if (instruction == "cat")
-		{
-			instructionOperator = std::make_unique<StringCatOperation>();
-		}
-		else if (instruction == "rev")
-		{
-			instructionOperator = std::make_unique<StringRevOperation>();
-		}
-		else if (instruction == "idx")
-		{
-			instructionOperator = std::make_unique<StringIdxOperation>();
-		}
-		else if (instruction == "len")
-		{
-			instructionOperator = std::make_unique<StringLenOperation>();
-		}
-		else if (instruction == "slc")
-		{
-			instructionOperator = std::make_unique<StringSlcOperation>();
-		}
-		else if (instruction == "rot")
-		{
-			instructionOperator = std::make_unique<StringRotOperation>();
-		}
-		else if (instruction == "enl")
-		{
-			instructionOperator = std::make_unique<StringEnlOperation>();
-		}
-		//Integer operations
-		else if (instruction == "add")
-		{
-			instructionOperator = std::make_unique<IntegerAddOperation>();
-		}
-		else if (instruction == "sub")
-		{
-			instructionOperator = std::make_unique<IntegerSubOperation>();
-		}
-		else if (instruction == "dec")
-		{
-			instructionOperator = std::make_unique<IntegerDecOperation>();
-		}
-		else if (instruction == "inc")
-		{
-			instructionOperator = std::make_unique<IntegerIncOperation>();
-		}
-		else if (instruction == "mod")
-		{
-			instructionOperator = std::make_unique<IntegerModOperation>();
-		}
-		else if (instruction == "div")
-		{
-			instructionOperator = std::make_unique<IntegerDivOperation>();
-		}
-		else if (instruction == "mul")
-		{
-			instructionOperator = std::make_unique<IntegerMulOperation>();
-		}
-		else if (instruction == "neg")
-		{
-			instructionOperator = std::make_unique<IntegerNegOperation>();
-		}
-		else if (instruction == "abs")
-		{
-			instructionOperator = std::make_unique<IntegerAbsOperation>();
-		}
-		//Tests & Jumps
-		else if (instruction == "gto")
-		{
-			instructionOperator = std::make_unique<JumpGtoOperation>(this->currentPosition);
-
-		}
-		else if (instruction == "gne")
-		{
-			instructionOperator = std::make_unique<JumpGneOperation>(this->currentPosition);
-
-		}
-		else if (instruction == "gge")
-		{
-			instructionOperator = std::make_unique<JumpGgeOperation>(this->currentPosition);
-		}
-		else if (instruction == "ggt")
-		{
-			instructionOperator = std::make_unique<JumpGgtOperation>(this->currentPosition);
-		}
-		else if (instruction == "gle")
-		{
-			instructionOperator = std::make_unique<JumpGleOperation>(this->currentPosition);
-		}
-		else if (instruction == "glt")
-		{
-			instructionOperator = std::make_unique<JumpGltOperation>(this->currentPosition);
-		}
-		//Functies
-		else if (instruction == "ret")
-		{
-			instructionOperator = std::make_unique<FunctieRetOperation>(this->currentPosition);
-		}
-		else if (instruction == "fun")
-		{
-			instructionOperator = std::make_unique<FunctieFunOperation>(this->currentPosition);
-		}
-		//Digit
-		else
-		{
-			this->stack.push_back(instruction);
-		}
-
-		if (instructionOperator.get())
-		{
-			instructionOperator->execute(this->stack, this->callStack, this->variables, this->labelReferences);
-		}
-
+		this->stack.push_back(instruction);
+		return instruction;
 	}
 
-	return instruction;
+
+
+	try
+	{
+		std::unique_ptr<IInstruction> instructionOperator = getOperation(instruction);
+		instructionOperator->execute(this->stack, this->callStack, this->variables, this->labelReferences);
+		return instruction;
+	}
+	catch (const std::exception& ex)
+	{
+		std::cout << "Exception at line(" << this->currentPosition << "): " << ex.what() << std::endl;
+		return "error";
+	}
+}
+
+std::unique_ptr<IInstruction> Interpreter::getOperation(std::string op)
+{
+	std::unique_ptr<IInstruction> operation;
+
+	//String operations
+	if (op == "dup")
+	{
+		operation = std::make_unique<StringDupOperation>();
+	}
+	else if (op == "cat")
+	{
+		operation = std::make_unique<StringCatOperation>();
+	}
+	else if (op == "rev")
+	{
+		operation = std::make_unique<StringRevOperation>();
+	}
+	else if (op == "idx")
+	{
+		operation = std::make_unique<StringIdxOperation>();
+	}
+	else if (op == "len")
+	{
+		operation = std::make_unique<StringLenOperation>();
+	}
+	else if (op == "slc")
+	{
+		operation = std::make_unique<StringSlcOperation>();
+	}
+	else if (op == "rot")
+	{
+		operation = std::make_unique<StringRotOperation>();
+	}
+	else if (op == "enl")
+	{
+		operation = std::make_unique<StringEnlOperation>();
+	}
+	//Integer operations
+	else if (op == "add")
+	{
+		operation = std::make_unique<IntegerAddOperation>();
+	}
+	else if (op == "sub")
+	{
+		operation = std::make_unique<IntegerSubOperation>();
+	}
+	else if (op == "dec")
+	{
+		operation = std::make_unique<IntegerDecOperation>();
+	}
+	else if (op == "inc")
+	{
+		operation = std::make_unique<IntegerIncOperation>();
+	}
+	else if (op == "mod")
+	{
+		operation = std::make_unique<IntegerModOperation>();
+	}
+	else if (op == "div")
+	{
+		operation = std::make_unique<IntegerDivOperation>();
+	}
+	else if (op == "mul")
+	{
+		operation = std::make_unique<IntegerMulOperation>();
+	}
+	else if (op == "neg")
+	{
+		operation = std::make_unique<IntegerNegOperation>();
+	}
+	else if (op == "abs")
+	{
+		operation = std::make_unique<IntegerAbsOperation>();
+	}
+	//Tests & Jumps
+	else if (op == "gto")
+	{
+		operation = std::make_unique<JumpGtoOperation>(this->currentPosition);
+	}
+	else if (op == "gne")
+	{
+		operation = std::make_unique<JumpGneOperation>(this->currentPosition);
+	}
+	else if (op == "gge")
+	{
+		operation = std::make_unique<JumpGgeOperation>(this->currentPosition);
+	}
+	else if (op == "ggt")
+	{
+		operation = std::make_unique<JumpGgtOperation>(this->currentPosition);
+	}
+	else if (op == "gle")
+	{
+		operation = std::make_unique<JumpGleOperation>(this->currentPosition);
+	}
+	else if (op == "glt")
+	{
+		operation = std::make_unique<JumpGltOperation>(this->currentPosition);
+	}
+	//Functies
+	else if (op == "ret")
+	{
+		operation = std::make_unique<FunctieRetOperation>(this->currentPosition);
+	}
+	else if (op == "fun")
+	{
+		operation = std::make_unique<FunctieFunOperation>(this->currentPosition);
+	}
+
+	if (operation)
+	{
+		return operation;
+	}
+
+	std::string exceptionMessage = "Unknown operation(" + op + ")";
+	throw std::exception(exceptionMessage.c_str());
 }
