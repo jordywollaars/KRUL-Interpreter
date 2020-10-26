@@ -13,6 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Operations">
+      <UniqueIdentifier>{21ec40c9-7288-400e-94ef-9715e0b5e9c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operations">
+      <UniqueIdentifier>{24da3fbe-c61b-42e9-9017-b095651e1262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operations\String">
+      <UniqueIdentifier>{b3949dc3-46fa-486d-b046-1fcb15a9ed3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operations\Integer">
+      <UniqueIdentifier>{0d0307f8-f13c-48d2-92f9-00f9e04ffb24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operations\Integer">
+      <UniqueIdentifier>{bab03867-09fc-4c95-af8e-f01c86cd55ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operations\String">
+      <UniqueIdentifier>{b4745272-4c90-4a1a-a67a-a7f6a9967180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operations\Jumps">
+      <UniqueIdentifier>{7047f89b-19a2-49ba-b4cc-304737b55212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operations\Jumps">
+      <UniqueIdentifier>{49dfc106-eaee-4c60-b568-cc06c4863b3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Operations\Functies">
+      <UniqueIdentifier>{d85135f0-dcf8-404e-92a9-34bd13296de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Operations\Functies">
+      <UniqueIdentifier>{e0a169ee-2031-4419-b168-994e9a15bf94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CPPLS.cpp">
@@ -24,12 +54,165 @@
     <ClCompile Include="Interpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IntegerAbsOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerAddOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerDecOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerDivOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerIncOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerModOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerMulOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerNegOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="IntegerSubOperation.cpp">
+      <Filter>Source Files\Operations\Integer</Filter>
+    </ClCompile>
+    <ClCompile Include="StringEnlOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringIdxOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringLenOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringRevOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringRotOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringSlcOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringCatOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="StringDupOperation.cpp">
+      <Filter>Source Files\Operations\String</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGtoOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGgeOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGgtOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGleOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGltOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpGneOperation.cpp">
+      <Filter>Source Files\Operations\Jumps</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctieFunOperation.cpp">
+      <Filter>Source Files\Operations\Functies</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctieRetOperation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interpreter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StringCatOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringDupOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringEnlOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringIdxOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringLenOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringRevOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringRotOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="StringSlcOperation.hpp">
+      <Filter>Header Files\Operations\String</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerAbsOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerAddOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerDecOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerDivOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerIncOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerModOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerMulOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerNegOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IntegerSubOperation.hpp">
+      <Filter>Header Files\Operations\Integer</Filter>
+    </ClInclude>
+    <ClInclude Include="IInstruction.h">
+      <Filter>Header Files\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGtoOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGgeOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGgtOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGleOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGltOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpGneOperation.hpp">
+      <Filter>Header Files\Operations\Jumps</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctieFunOperation.hpp">
+      <Filter>Header Files\Operations\Functies</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctieRetOperation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

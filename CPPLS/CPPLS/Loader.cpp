@@ -33,7 +33,7 @@ std::vector<std::string> Loader::LoadInstructionsFromURL(std::string url)
 
 	curl_easy_cleanup(req);
 
-	std::cout << readBuffer << std::endl;
+	//std::cout << readBuffer << std::endl;
 	
 	return this->CreateStackFromString(readBuffer);
 }

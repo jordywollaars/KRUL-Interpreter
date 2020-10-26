@@ -155,12 +155,63 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CPPLS.cpp" />
+    <ClCompile Include="FunctieFunOperation.cpp" />
+    <ClCompile Include="FunctieRetOperation.cpp" />
+    <ClCompile Include="IntegerAbsOperation.cpp" />
+    <ClCompile Include="IntegerAddOperation.cpp" />
+    <ClCompile Include="IntegerDecOperation.cpp" />
+    <ClCompile Include="IntegerDivOperation.cpp" />
+    <ClCompile Include="IntegerIncOperation.cpp" />
+    <ClCompile Include="IntegerModOperation.cpp" />
+    <ClCompile Include="IntegerMulOperation.cpp" />
+    <ClCompile Include="IntegerNegOperation.cpp" />
+    <ClCompile Include="IntegerSubOperation.cpp" />
     <ClCompile Include="Interpreter.cpp" />
+    <ClCompile Include="JumpGgeOperation.cpp" />
+    <ClCompile Include="JumpGgtOperation.cpp" />
+    <ClCompile Include="JumpGleOperation.cpp" />
+    <ClCompile Include="JumpGltOperation.cpp" />
+    <ClCompile Include="JumpGneOperation.cpp" />
+    <ClCompile Include="JumpGtoOperation.cpp" />
     <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="StringCatOperation.cpp" />
+    <ClCompile Include="StringDupOperation.cpp" />
+    <ClCompile Include="StringEnlOperation.cpp" />
+    <ClCompile Include="StringIdxOperation.cpp" />
+    <ClCompile Include="StringLenOperation.cpp" />
+    <ClCompile Include="StringRevOperation.cpp" />
+    <ClCompile Include="StringRotOperation.cpp" />
+    <ClCompile Include="StringSlcOperation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FunctieFunOperation.hpp" />
+    <ClInclude Include="FunctieRetOperation.hpp" />
+    <ClInclude Include="IInstruction.h" />
+    <ClInclude Include="IntegerAbsOperation.hpp" />
+    <ClInclude Include="IntegerAddOperation.hpp" />
+    <ClInclude Include="IntegerDecOperation.hpp" />
+    <ClInclude Include="IntegerDivOperation.hpp" />
+    <ClInclude Include="IntegerIncOperation.hpp" />
+    <ClInclude Include="IntegerModOperation.hpp" />
+    <ClInclude Include="IntegerMulOperation.hpp" />
+    <ClInclude Include="IntegerNegOperation.hpp" />
+    <ClInclude Include="IntegerSubOperation.hpp" />
     <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="JumpGgeOperation.hpp" />
+    <ClInclude Include="JumpGgtOperation.hpp" />
+    <ClInclude Include="JumpGleOperation.hpp" />
+    <ClInclude Include="JumpGltOperation.hpp" />
+    <ClInclude Include="JumpGneOperation.hpp" />
+    <ClInclude Include="JumpGtoOperation.hpp" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="StringCatOperation.hpp" />
+    <ClInclude Include="StringDupOperation.hpp" />
+    <ClInclude Include="StringEnlOperation.hpp" />
+    <ClInclude Include="StringIdxOperation.hpp" />
+    <ClInclude Include="StringLenOperation.hpp" />
+    <ClInclude Include="StringRevOperation.hpp" />
+    <ClInclude Include="StringRotOperation.hpp" />
+    <ClInclude Include="StringSlcOperation.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
