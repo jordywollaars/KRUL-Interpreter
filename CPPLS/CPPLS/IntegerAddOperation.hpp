@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IInstruction.h"
+#include "IInstruction.hpp"
 
 class IntegerAddOperation : public IInstruction
 {

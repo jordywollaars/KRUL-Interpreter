@@ -187,7 +187,7 @@
   <ItemGroup>
     <ClInclude Include="FunctieFunOperation.hpp" />
     <ClInclude Include="FunctieRetOperation.hpp" />
-    <ClInclude Include="IInstruction.h" />
+    <ClInclude Include="IInstruction.hpp" />
     <ClInclude Include="IntegerAbsOperation.hpp" />
     <ClInclude Include="IntegerAddOperation.hpp" />
     <ClInclude Include="IntegerDecOperation.hpp" />
@@ -197,14 +197,14 @@
     <ClInclude Include="IntegerMulOperation.hpp" />
     <ClInclude Include="IntegerNegOperation.hpp" />
     <ClInclude Include="IntegerSubOperation.hpp" />
-    <ClInclude Include="Interpreter.h" />
+    <ClInclude Include="Interpreter.hpp" />
     <ClInclude Include="JumpGgeOperation.hpp" />
     <ClInclude Include="JumpGgtOperation.hpp" />
     <ClInclude Include="JumpGleOperation.hpp" />
     <ClInclude Include="JumpGltOperation.hpp" />
     <ClInclude Include="JumpGneOperation.hpp" />
     <ClInclude Include="JumpGtoOperation.hpp" />
-    <ClInclude Include="Loader.h" />
+    <ClInclude Include="Loader.hpp" />
     <ClInclude Include="StringCatOperation.hpp" />
     <ClInclude Include="StringDupOperation.hpp" />
     <ClInclude Include="StringEnlOperation.hpp" />

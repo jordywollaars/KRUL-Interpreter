@@ -1,5 +1,5 @@
 #pragma once
-#include "IInstruction.h"
+#include "IInstruction.hpp"
 class JumpGgeOperation :
 	public IInstruction
 {

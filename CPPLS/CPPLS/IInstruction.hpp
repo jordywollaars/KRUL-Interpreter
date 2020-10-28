@@ -1,4 +1,6 @@
-#pragma once
+#ifndef IINSTRUCTION_HPP
+#define IINSTRUCTION_HPP
+
 #include <vector>
 #include <string>
 #include <map>
@@ -11,3 +13,5 @@ public:
 		std::map<std::string, std::string>& variables,
 		std::map<std::string, int>& labelReferences) = 0;
 };
+
+#endif //IINSTRUCTION_HPP

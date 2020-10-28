@@ -4,8 +4,8 @@
 #include <string>
 #include <sstream>
 #include "curl/curl.h"
-#include "Loader.h"
-#include "Interpreter.h"
+#include "Loader.hpp"
+#include "Interpreter.hpp"
 
 #include <crtdbg.h>
 #include "Utilities.hpp"

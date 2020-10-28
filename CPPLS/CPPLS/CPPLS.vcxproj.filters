@@ -134,12 +134,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Loader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Interpreter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StringCatOperation.hpp">
       <Filter>Header Files\Operations\String</Filter>
     </ClInclude>
@@ -191,9 +185,6 @@
     <ClInclude Include="IntegerSubOperation.hpp">
       <Filter>Header Files\Operations\Integer</Filter>
     </ClInclude>
-    <ClInclude Include="IInstruction.h">
-      <Filter>Header Files\Operations</Filter>
-    </ClInclude>
     <ClInclude Include="JumpGtoOperation.hpp">
       <Filter>Header Files\Operations\Jumps</Filter>
     </ClInclude>
@@ -220,6 +211,15 @@
     </ClInclude>
     <ClInclude Include="Utilities.hpp">
       <Filter>Header Files\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="IInstruction.hpp">
+      <Filter>Header Files\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="Interpreter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

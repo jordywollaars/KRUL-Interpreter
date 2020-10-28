@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IInstruction.h"
+#include "IInstruction.hpp"
 
 class StringDupOperation :
 	public IInstruction

@@ -1,6 +1,6 @@
-#include "Interpreter.h"
+#include "Interpreter.hpp"
 #include <iostream>
-#include "IInstruction.h"
+#include "IInstruction.hpp"
 #include "StringDupOperation.hpp"
 #include "StringCatOperation.hpp"
 #include "StringRevOperation.hpp"

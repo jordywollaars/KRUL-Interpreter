@@ -1,12 +1,13 @@
-#pragma once
+#ifndef INTERPRETER_HPP
+#define INTERPRETER_HPP
 
 #include <stack>
 #include <string>
 #include <vector>
 #include <map>
 #include <memory>
-#include "Loader.h"
-#include "IInstruction.h"
+#include "Loader.hpp"
+#include "IInstruction.hpp"
 
 class Interpreter {
 private:
@@ -29,3 +30,5 @@ public:
 	std::string interpret(int position);
 	std::unique_ptr<IInstruction> getOperation(std::string op);
 };
+
+#endif //INTERPRETER_HPP
