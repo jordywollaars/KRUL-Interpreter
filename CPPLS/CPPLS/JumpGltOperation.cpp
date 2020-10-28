@@ -1,4 +1,5 @@
 #include "JumpGltOperation.hpp"
+#include "Utilities.hpp"
 
 JumpGltOperation::JumpGltOperation(int& position) :currentPosition{ position }
 {
@@ -6,15 +7,29 @@ JumpGltOperation::JumpGltOperation(int& position) :currentPosition{ position }
 
 void JumpGltOperation::execute(std::vector<std::string>& stack, std::vector<std::string>& callStack, std::map<std::string, std::string>& variables, std::map<std::string, int>& labelReferences)
 {
-	std::string label = stack.back();
-	stack.pop_back();
-	std::string val2 = stack.back();
-	stack.pop_back();
-	std::string val1 = stack.back();
+	if (stack.size() < 3)
+		throw std::exception("Not enough values on the stack");
+
+	if (!Utilities::isDigit(stack.back()))
+		throw std::exception("Label could not be converted to an integer.");
+
+	int label = std::stoi(stack.back());
 	stack.pop_back();
 
-	if (std::stoi(val1) < std::stoi(val2))
+	if (!Utilities::isDigit(stack.back()))
+		throw std::exception("Value could not be converted to an integer.");
+
+	int val2 = std::stoi(stack.back());
+	stack.pop_back();
+
+	if (!Utilities::isDigit(stack.back()))
+		throw std::exception("Value could not be converted to an integer.");
+
+	int val1 = std::stoi(stack.back());
+	stack.pop_back();
+
+	if (val1 < val2)
 	{
-		this->currentPosition = std::stoi(label) - 1;
+		this->currentPosition = label - 1;
 	}
 }

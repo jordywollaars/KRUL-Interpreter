@@ -8,6 +8,7 @@
 #include "Interpreter.h"
 
 #include <crtdbg.h>
+#include "Utilities.hpp"
 
 #define FIRST "start.txt"
 #define SECOND "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.txt"
@@ -23,11 +24,10 @@ void start()
 
 	std::unique_ptr<Interpreter> interpreter = std::make_unique<Interpreter>(base, FIRST);
 
-	std::string output;
-	output = interpreter->startInterpreting();
+	std::string output = interpreter->startInterpreting();
 
-	std::cout << "--------------------------------------------------------------------------------" << std::endl;
-	std::cout << "Message found: " << std::endl << output << std::endl;
+	std::cout << SECTIONDIVIDER << std::endl;
+	std::cout << output << std::endl;
 }
 
 int main(int argc, char* argv[])

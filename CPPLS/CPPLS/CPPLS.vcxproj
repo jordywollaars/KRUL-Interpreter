@@ -182,6 +182,7 @@
     <ClCompile Include="StringRevOperation.cpp" />
     <ClCompile Include="StringRotOperation.cpp" />
     <ClCompile Include="StringSlcOperation.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FunctieFunOperation.hpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="StringRevOperation.hpp" />
     <ClInclude Include="StringRotOperation.hpp" />
     <ClInclude Include="StringSlcOperation.hpp" />
+    <ClInclude Include="Utilities.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

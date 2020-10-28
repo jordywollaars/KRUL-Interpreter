@@ -26,6 +26,7 @@
 #include "JumpGltOperation.hpp"
 #include "FunctieFunOperation.hpp"
 #include "FunctieRetOperation.hpp"
+#include "Utilities.hpp"
 
 Interpreter::Interpreter(std::string baseURL, std::string startFile) : baseURL{ baseURL }
 {
@@ -45,10 +46,10 @@ std::string Interpreter::startInterpreting()
 	for (this->currentPosition; this->currentPosition < this->instructions.size(); this->currentPosition++)
 	{
 		output = this->interpret(this->currentPosition);
-		
+
 		if (output == "error")
 		{
-			return "The program has crashed due to an error!";
+			return "Error: The program has crashed due to an error!";
 		}
 	}
 
@@ -58,10 +59,11 @@ std::string Interpreter::startInterpreting()
 
 	if (output == "end")
 	{
+		result = "Message found: \n" + result;
 		return result;
 	}
 
-	std::cout << "--------------------------------------------------------------------------------" << std::endl;
+	//std::cout << SECTIONDIVIDER << std::endl;
 	std::cout << "Result:" << std::endl << result << std::endl;
 	system("pause");
 	this->currentFile = result;
@@ -89,18 +91,6 @@ void Interpreter::setupPrequirements()
 	this->currentPosition = 0;
 }
 
-bool isDigit(std::string str)
-{
-	for (int i = 0; i < str.size(); i++)
-	{
-		if (!std::isdigit(str.at(i)))
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
 std::string Interpreter::interpret(int position)
 {
 	const std::string instruction = this->instructions[position];
@@ -111,32 +101,48 @@ std::string Interpreter::interpret(int position)
 		return instruction;
 	}
 
+	std::string key;
 	switch (type)
 	{
 	case '\\':
 		this->stack.push_back(instruction.substr(instruction.find("\\") + 1));
 		return instruction;
 	case '>':
-		this->stack.push_back(std::to_string(this->labelReferences[instruction.substr(instruction.find(">") + 1)]));
-		return instruction;
+		key = instruction.substr(instruction.find(">") + 1);
+		if (this->labelReferences.find(key) != this->labelReferences.end())
+		{
+			this->stack.push_back(std::to_string(this->labelReferences[key]));
+			return instruction;
+		}
+		std::cout << "Exception at line(" << this->currentPosition << "): " << "Label '"<< key <<"' doesn't exist" << std::endl;
+		return "error";
 	case '=':
+		if (this->stack.empty())
+		{
+			std::cout << "Exception at line(" << this->currentPosition << "): " << "Nothing found on the stack" << std::endl;
+			return "error";
+		}
 		this->variables[instruction.substr(instruction.find("=") + 1)] = this->stack.back();
 		this->stack.pop_back();
 		return instruction;
 	case '$':
-		this->stack.push_back(this->variables[instruction.substr(instruction.find("$") + 1)]);
-		return instruction;
+		key = instruction.substr(instruction.find("$") + 1);
+		if (this->variables.find(key) != this->variables.end())
+		{
+			this->stack.push_back(this->variables[key]);
+			return instruction;
+		}
+		std::cout << "Exception at line(" << this->currentPosition << "): " << "Variable '" << key << "' doesn't exist" << std::endl;
+		return "error";
 	default:
 		break;
 	}
 
-	if (isDigit(instruction))
+	if (Utilities::isDigit(instruction))
 	{
 		this->stack.push_back(instruction);
 		return instruction;
 	}
-
-
 
 	try
 	{
