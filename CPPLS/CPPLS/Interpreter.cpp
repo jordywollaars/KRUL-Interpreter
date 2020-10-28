@@ -1,5 +1,5 @@
-#include "Interpreter.hpp"
 #include <iostream>
+#include "Interpreter.hpp"
 #include "IInstruction.hpp"
 #include "StringDupOperation.hpp"
 #include "StringCatOperation.hpp"
